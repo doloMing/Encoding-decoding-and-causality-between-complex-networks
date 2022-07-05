@@ -24,4 +24,3 @@ There is also a supporting function used to generate multivariate Gaussian varia
 
 To help users understand how to use our functions, we provide a simple instance in the released files:
 11. Instance.m: The function used to run the simple instance
-
