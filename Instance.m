@@ -63,4 +63,3 @@ end
 RandomPNum=20;
 [TABVec,TAB,GABVec,GAB,SizeABVec]=GrangerCandTransferE(SigmaA,SigmaB,SampleNum,RandomPNum,K);
 [TBAVec,TBA,GBAVec,GBA,SizeBAVec]=GrangerCandTransferE(SigmaB,SigmaA,SampleNum,RandomPNum,K);
-
