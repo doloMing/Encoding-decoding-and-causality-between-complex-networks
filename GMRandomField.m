@@ -1,14 +1,23 @@
-function [L,PinvL,Sigma]=GMRandomField(W)
+function [L,PinvL,Sigma]=GMRandomField(W,Type)
 % Input: 
 % W: the weighted adjacent matrix
+% Type: the type of covariance matrix (type 1 is L+1/n J, type 2 is
+% PinvL+1/n J). Type should be 1 or 2.
 
 % Output:
 % L: the graph Laplacian
-% PinvL: the Moore¨CPenrose pseudoinverse of L 
+% PinvL: the Mooreâ€“Penrose pseudoinverse of L 
 % Sigma: the covariance matrix of Gaussian Markov random field
+
 
 Deg = sum(W);
 L= diag(Deg)-W;
 PinvL=PinvFunction(L);
-Sigma=L+ones(size(L,1),size(L,1))./size(L,1);
+
+if Type==1
+   Sigma=L+ones(size(L,1),size(L,1))./size(L,1);
+elseif Type==2
+   Sigma=PinvL+ones(size(L,1),size(L,1))./size(L,1); 
+end
+
 
