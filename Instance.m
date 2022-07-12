@@ -11,8 +11,9 @@ WeightBaseB=(1+rand(size(WB,1),size(WB,2))*9);
 WB=WB.*(triu(WeightBaseB,1)+triu(WeightBaseB,1)');
 
 %% Represent nerworks as Gaussian Markov random fields
-[LA,PinvLA,SigmaA]=GMRandomField(WA);
-[LB,PinvLB,SigmaB]=GMRandomField(WB);
+Type=1; % Define the covariance matrix as L+1/n J
+[LA,PinvLA,SigmaA]=GMRandomField(WA,Type);
+[LB,PinvLB,SigmaB]=GMRandomField(WB,Type);
 
 %% Calculate information diverigence between nerworks
 % Network approximation if two networks have different sizes
@@ -51,7 +52,7 @@ ThetaMatrix=unique(ThetaMatrix,'rows');
 SigmaEnsemble=zeros(NumberofO,size(SigmaA,1),size(SigmaA,2));
 for ID=1:NumberofO
     WeightBase=abs(normrnd(0,mean(ThetaMatrix(ID,:)),size(SigmaA,1),size(SigmaA,2)));
-    [~,~,NoiseSigmaA1]=GMRandomField(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'));
+    [~,~,NoiseSigmaA1]=GMRandomField(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'),Type);
     SigmaEnsemble(ID,:,:)=NoiseSigmaA1;
 end
 
@@ -62,3 +63,4 @@ end
 RandomPNum=20;
 [TABVec,TAB,GABVec,GAB,SizeABVec]=GrangerCandTransferE(SigmaA,SigmaB,SampleNum,RandomPNum,K);
 [TBAVec,TBA,GBAVec,GBA,SizeBAVec]=GrangerCandTransferE(SigmaB,SigmaA,SampleNum,RandomPNum,K);
+
