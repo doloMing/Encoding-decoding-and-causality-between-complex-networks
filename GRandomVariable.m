@@ -1,4 +1,4 @@
-function [L,PinvL,Sigma]=GRandomVaraible(W,Type)
+function [L,PinvL,Sigma]=GRandomVariable(W,Type)
 % Input: 
 % W: the weighted adjacent matrix
 % Type: the type of covariance matrix (type 1 is L+1/n J, type 2 is
