@@ -10,10 +10,10 @@ WB= ErdosRenyi(500,0.2);
 WeightBaseB=(1+rand(size(WB,1),size(WB,2))*9);
 WB=WB.*(triu(WeightBaseB,1)+triu(WeightBaseB,1)');
 
-%% Represent nerworks as Gaussian Markov random fields
+%% Represent nerworks as Gaussian variables
 Type=1; % Define the covariance matrix as L+1/n J
-[LA,PinvLA,SigmaA]=GMRandomField(WA,Type);
-[LB,PinvLB,SigmaB]=GMRandomField(WB,Type);
+[LA,PinvLA,SigmaA]=GRandomVaraible(WA,Type);
+[LB,PinvLB,SigmaB]=GRandomVaraible(WB,Type);
 
 %% Calculate information diverigence between nerworks
 % Network approximation if two networks have different sizes
@@ -47,12 +47,12 @@ end
 ThetaMatrix=unique(ThetaMatrix,'rows');
 
 % Step 2: Assume that the effect of parameter vector on network A is to
-% add a noise on the Gaussian Markov random field of network A. Here the
+% add a noise on the Gaussian variable of network A. Here the
 % definition of the noise is introduced in Sec. 6 in our paper
 SigmaEnsemble=zeros(NumberofO,size(SigmaA,1),size(SigmaA,2));
 for ID=1:NumberofO
     WeightBase=abs(normrnd(0,mean(ThetaMatrix(ID,:)),size(SigmaA,1),size(SigmaA,2)));
-    [~,~,NoiseSigmaA1]=GMRandomField(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'),Type);
+    [~,~,NoiseSigmaA1]=GRandomVaraible(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'),Type);
     SigmaEnsemble(ID,:,:)=NoiseSigmaA1;
 end
 
