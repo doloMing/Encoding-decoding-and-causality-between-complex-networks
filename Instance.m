@@ -12,8 +12,8 @@ WB=WB.*(triu(WeightBaseB,1)+triu(WeightBaseB,1)');
 
 %% Represent nerworks as Gaussian variables
 Type=1; % Define the covariance matrix as L+1/n J
-[LA,PinvLA,SigmaA]=GRandomVaraible(WA,Type);
-[LB,PinvLB,SigmaB]=GRandomVaraible(WB,Type);
+[LA,PinvLA,SigmaA]=GRandomVariable(WA,Type);
+[LB,PinvLB,SigmaB]=GRandomVariable(WB,Type);
 
 %% Calculate information diverigence between nerworks
 % Network approximation if two networks have different sizes
@@ -52,7 +52,7 @@ ThetaMatrix=unique(ThetaMatrix,'rows');
 SigmaEnsemble=zeros(NumberofO,size(SigmaA,1),size(SigmaA,2));
 for ID=1:NumberofO
     WeightBase=abs(normrnd(0,mean(ThetaMatrix(ID,:)),size(SigmaA,1),size(SigmaA,2)));
-    [~,~,NoiseSigmaA1]=GRandomVaraible(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'),Type);
+    [~,~,NoiseSigmaA1]=GRandomVariable(WA1.*(triu(WeightBase,1)+triu(WeightBase,1)'),Type);
     SigmaEnsemble(ID,:,:)=NoiseSigmaA1;
 end
 
