@@ -1,13 +1,13 @@
-# Analytic-relations-between-complex-networks-encoding-decoding-and-causality
-This is the toolbox introduced in the paper entitled as "Analytic relations between complex networks: encoding, decoding, and causality".
+# Analytic-relations-between-networks-encoding-decoding-and-causality
+This is the toolbox introduced in the paper entitled as "Analytic relations between networks: encoding, decoding, and causality".
 
 In general, this toolbox can be used to deal with following questions:
-A. Represent a complex network by a Gaussian Markov random field, where the infomation of network topology is contained in the covariance matrix of the Gaussian Markov random field
-B. Analytically calculate the similarity between complex networks from the perspectives of encoding, decoding, and causal analyses
+A. Represent a complex network by a Gaussian variable, where the infomation of network topology is contained in the covariance matrix of the Gaussian variable
+B. Analytically calculate the similarity between networks from the perspectives of encoding, decoding, and causal analyses
 C. Help solve network clustering and classification
 
 In the released files, you can find key functions used in our research:
-1. GMRandomField.m: The function used to work out the graph Laplacian (the discrete Schr\"{o}dinger operator), the Moore–Penrose pseudoinverse of L, the covariance matrix of Gaussian Markov random field
+1. GRandomVaraible.m: The function used to work out the graph Laplacian (the discrete Schr\"{o}dinger operator), the Moore–Penrose pseudoinverse of L, the covariance matrix of Gaussian variable
 2. NetworkApproximation.m: The function used to realize network approximation if two networks have different size
 3. InfoDivergence.m: The function used to work out the information divergence between two networks
 4. MutualInfo.m: The function used to work out the mutual information between two networks
