@@ -1,4 +1,4 @@
-# Analytic-relations-between-networks-encoding-decoding-and-causality
+# Encoding, decoding, and causality between complex networks
 This is the toolbox introduced in the paper entitled as "Encoding, decoding, and causality between complex networks".
 
 In general, this toolbox can be used to deal with following questions:
