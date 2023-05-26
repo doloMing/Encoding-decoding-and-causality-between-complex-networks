@@ -56,19 +56,9 @@ def granger_causality_and_transfer_entropy(sigma_a, sigma_b, sample_num, rand_pa
         samples_b1_a = np.concatenate((sample_b1, sample_a), axis=0).T
         samples_b2, _ = multivar_gaussian_rand_num_generator(np.zeros(subnet_b2.shape[0]), subnet_b2, sample_num)
         samples_b2 = samples_b2.T
-        cov_b2_b1_a = np.zeros((samples_b2.shape[1], samples_b1_a.shape[1]))
-        for j in range(samples_b2.shape[1]):
-            for k in range(samples_b1_a.shape[1]):
-                cov_b2_b1_a[j, k] = np.cov(samples_b2[:, j], samples_b1_a[:, k])[0, 1]
-        cov_b1_a = np.zeros((samples_b1_a.shape[1], samples_b1_a.shape[1]))
-        for j in range(samples_b1_a.shape[1]):
-            for k in range(samples_b1_a.shape[1]):
-                cov_b1_a[j, k] = np.cov(samples_b1_a[:, j], samples_b1_a[:, k])[0, 1]
+        cov_b2_b1_a = np.cov(samples_b2.T, samples_b1_a.T)[:samples_b2.shape[1],samples_b2.shape[1]:]
+        cov_b1_a = np.cov(samples_b1_a.T)
         sigma_2 = subnet_b2 - np.dot(np.dot(cov_b2_b1_a, np.linalg.inv(cov_b1_a)), cov_b2_b1_a.T)
-        # print(sigma_1)
-        # print(np.linalg.eigvals(sigma_1))
-        # print(np.linalg.eigvals(sigma_2))
-        # print()
         eigvals_sigma_1 = np.linalg.eigvals(sigma_1)
         eigvals_sigma_1[eigvals_sigma_1 <= 0] = 1
         eigvals_sigma_2 = np.linalg.eigvals(sigma_2)
