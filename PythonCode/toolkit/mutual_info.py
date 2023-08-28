@@ -18,10 +18,6 @@ def mutual_infomation(sigma_a, sigma_b, sample_num, k):
     sample_a = multivar_gaussian_rand_num_generator(np.zeros(sigma_a.shape[0]), sigma_a, sample_num)[0]
     sample_b = multivar_gaussian_rand_num_generator(np.zeros(sigma_b.shape[0]), sigma_b, sample_num)[0]
     joint_samples = np.concatenate((sample_a, sample_b), axis=0).T
-    
-    h_a = (1.0 + np.log(2 * np.pi)) * sigma_a.shape[0] / 2.0 + np.sum(np.log(np.linalg.eigvals(sigma_a))) / 2.0
-    h_b = (1.0 + np.log(2 * np.pi)) * sigma_b.shape[0] / 2.0 + np.sum(np.log(np.linalg.eigvals(sigma_b))) / 2.0
-    h_ab = entropy_estimation(joint_samples, k)
 
     h_a = np.real((1.0 + np.log(2 * np.pi)) * sigma_a.shape[0] / 2.0 + np.sum(np.log(np.linalg.eigvals(sigma_a))) / 2.0)
     h_b = np.real((1.0 + np.log(2 * np.pi)) * sigma_b.shape[0] / 2.0 + np.sum(np.log(np.linalg.eigvals(sigma_b))) / 2.0)
